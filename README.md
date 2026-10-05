@@ -96,16 +96,29 @@ Each run trains the three arms compared in the paper:
 
 Command-line flags override the config. All runs are CPU-only.
 
+### Reproduce the paper
+
+Each command below trains all three arms on every training seed in the config
+and writes their held-out evaluation:
+
 ```bash
+# CityLearn: 3 buildings, grid demand cap (seeds 1101-1103)
 python scripts/train_citylearn.py --config configs/citylearn.yaml --output-dir runs/citylearn
-python scripts/train_mabim.py     --config configs/mabim.yaml --evaluate --output-dir runs/mabim
-python scripts/train_harvest.py   --config configs/harvest.yaml --seed 10411 --output-dir runs/harvest
-python scripts/train_metadrive.py --config configs/metadrive.yaml --seeds 211 --out runs/metadrive/seed211.json
+
+# MABIM: 400 SKU agents, 2 order-rejection caps (seeds 1101-1103)
+python scripts/train_mabim.py --config configs/mabim.yaml --evaluate --output-dir runs/mabim
+
+# Harvest: 7 agents, one shared cost (seeds 10411, 10442, 10473)
+python scripts/train_harvest.py --config configs/harvest.yaml --output-dir runs/harvest
+
+# MetaDrive: 4 vehicles, safety-event rate (seeds 211-216, one process per seed)
+for s in 211 212 213 214 215 216; do
+  python scripts/train_metadrive.py --config configs/metadrive.yaml --seeds $s --out runs/metadrive/seed$s.json
+done
 ```
 
-Each command trains all three arms and writes their held-out evaluation. Harvest
-and MetaDrive run one training seed per call; the paper's seeds are listed in
-each config. See `--help` for further options.
+To run a single seed or arm, add `--seed <s>` (MetaDrive: `--seeds <s>`) or
+`--arms lira` (MABIM: `--arm lira`); see each script's `--help`.
 
 ## Main results
 
