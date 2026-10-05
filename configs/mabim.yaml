@@ -1,0 +1,26 @@
+# MABIM inventory management (ReplenishmentEnv sku200.2_stores.lowest_capacity).
+# N = 400 SKU agents, K = 2 shared rejection costs (warehouse 0/store2, warehouse 1/store1).
+# Settings of the main-results table (paper Appendix, "MABIM").
+domain: mabim
+seeds: [1101, 1102, 1103]
+arms: [uniform, pal, lira]
+
+# Applied as argparse defaults by scripts/train_mabim.py; CLI flags override.
+args:
+  init_checkpoint: checkpoints/mabim_init_policy.pt   # shared pretrained initial policy (release asset)
+  budget_file: configs/mabim_budget.json              # d_k = 0.95 x mean validation-period cost
+  training_mode: train          # data split sampled during training
+  q: 5                          # committed PPO/Adam updates per outer cycle (also the lookahead length)
+  cycles: 10                    # outer cycles -> 50 committed updates
+  m_replicates: 6               # M independent lookahead replicas for the LOO score correction
+  outer_lr: 0.05                # responsibility-logit step size
+  lira_outer_objective_scale: 400   # LiRA outer gradient: agent-mean welfare -> total-profit units (= N)
+  eta: 0.01                     # shared-dual step size on C_k/d_k - 1
+  dual_init: 0.01
+  dual_max: 100.0
+  checkpoint_every: 1           # resume checkpoint after every outer cycle
+
+# Held-out evaluation (scripts/eval_mabim.py): test split 2021-09-01..2021-10-30 (60 days),
+# the same eight action seeds for every arm.
+eval:
+  seeds: [950001, 950002, 950003, 950004, 950005, 950006, 950007, 950008]

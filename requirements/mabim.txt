@@ -1,0 +1,9 @@
+-r base.txt
+# ReplenishmentEnv itself is installed from source (commit e667565), see README.
+gym>=0.26
+pandas
+pyaml
+pyecharts
+prettytable
+simplejson
+jinja2

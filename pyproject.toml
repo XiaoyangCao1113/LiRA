@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lira"
+version = "1.0.0"
+description = "LiRA: Lagrangian Responsibility Allocation for shared constraints in multi-agent reinforcement learning"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [
+  { name = "Xiaoyang Cao", email = "xycao@mit.edu" },
+  { name = "Jingqi Li" },
+  { name = "Zhe Fu" },
+  { name = "Alexandre M. Bayen" },
+]
+keywords = ["multi-agent reinforcement learning", "constrained RL", "Lagrangian", "responsibility allocation", "meta-gradient"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "torch>=2.2",
+  "numpy>=1.24",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+citylearn = ["citylearn==2.5.0"]
+metadrive = ["metadrive-simulator==0.4.3"]
+# ReplenishmentEnv (MABIM) and Melting Pot (Harvest) themselves are installed
+# from source at pinned commits; see README.md.
+mabim = ["gym>=0.26", "pandas", "pyaml", "pyecharts", "prettytable", "simplejson", "jinja2"]
+harvest = ["dmlab2d==1.0.0", "tensorflow"]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://lira-marl.github.io/"
+Repository = "https://github.com/XiaoyangCao1113/LiRA"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.patch"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

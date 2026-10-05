@@ -1,0 +1,5 @@
+-r base.txt
+# Melting Pot itself is installed from source (commit 817f8c19 + the patch in
+# src/lira/envs/harvest/patches/), see README. Versions used for the paper:
+dmlab2d==1.0.0
+tensorflow  # needed by the pretrained Melting Pot bot used as warm start

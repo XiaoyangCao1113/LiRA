@@ -1,0 +1,25 @@
+# MetaDrive multi-agent Intersection (N=4 agents, K=1 shared crash cost).
+# Paper setting (Table "Welfare and shared costs", MetaDrive row): six matched
+# training seeds, one `train_metadrive.py` invocation per seed, all three arms.
+domain: metadrive
+seeds: [211, 212, 213, 214, 215, 216]
+arms: [uniform, lira, pal]
+args:
+  steps: 100                    # online learner steps (rollout of <=1000 env steps + one PPO update)
+  rho_interval: 2               # LiRA responsibility update every 2 learner steps
+  du_q: 2                       # lookahead depth q
+  rho_lr: 0.05                  # responsibility step size eta_rho
+  sampling_correction: true     # DU + score-function sampling correction
+  sc_baseline: loo              # leave-one-out welfare baseline
+  sc_replicates: 5              # M independent lookaheads
+  sc_seed_stride: 17
+  cost_budget: 0.001            # shared-cost budget per actual env step (= 1 event / 1000 steps)
+  lambda_lr: 4.0                # shared dual learning rate (same for all arms; PAL uses budget/N per agent)
+  num_scenarios: 512
+  heldout_seeds: [100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160]
+  heldout_horizon: 1000
+  actor_lr: 3.0e-4
+  entropy_coefficient: 0.01
+  # Shared initial actor/critic for all arms; download from
+  # https://github.com/XiaoyangCao1113/LiRA/releases/download/v1.0/metadrive_init_actor.pt
+  init_checkpoint: checkpoints/metadrive_init_actor.pt

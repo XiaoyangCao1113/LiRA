@@ -1,0 +1,22 @@
+# Melting Pot Commons Harvest (commons_harvest__open), N=7 agents, K=1 shared cost.
+# Paper setting (Table "Welfare and shared costs across four tasks", Harvest row).
+# Usage:
+#   python scripts/train_harvest.py --config configs/harvest.yaml \
+#       --meltingpot-source /path/to/meltingpot --output-dir runs/harvest
+# Each seed trains all three arms (uniform, pal, lira) in one process.
+domain: harvest
+seeds: [10411, 10442, 10473]
+arms: [uniform, pal, lira]
+args:
+  horizon: 100                 # steps per episode
+  q: 10                        # inner PPO updates per lookahead replicate
+  replicates: 4                # M, independent lookahead replicates (leave-one-out baseline)
+  rho_lr: 0.15                 # responsibility (allocation) step size
+  outer_every: 5               # allocation update every 5 response updates
+  response_updates: 60         # training updates per arm
+  lambda_init: 0.3             # initial shared dual
+  lambda_lr: 0.05              # dual step size
+  damage_limit_fraction: 0.68  # episode cost budget = 0.68 * 100 = 68
+  heldout_rollouts: 5          # held-out evaluation episodes per arm and seed
+  teacher_strength: 3.5        # warm start toward the pretrained Harvest bot's proposed action
+  min_teacher_agreement: 0.4   # sanity check on the warm-started initial policy

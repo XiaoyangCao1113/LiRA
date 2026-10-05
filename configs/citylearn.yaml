@@ -1,0 +1,25 @@
+# CityLearn v2 (citylearn_challenge_2023_phase_1): N=3 buildings, K=1 district grid cap.
+# Paper settings for the main results table (Appendix "Benchmark setup", CityLearn).
+# Usage: python scripts/train_citylearn.py --config configs/citylearn.yaml --output-dir runs/citylearn
+domain: citylearn
+seeds: [1101, 1102, 1103]
+arms: [uniform, pal, lira]
+args:
+  dataset: citylearn_challenge_2023_phase_1
+  # Live learner (all arms)
+  cycles: 30                  # outer cycles
+  q: 10                       # h: live PPO batches per outer cycle
+  rollout_steps: 12           # steps per PPO batch (live and lookahead)
+  epochs: 4                   # PPO epochs per live batch
+  # Shared constraint and dual (all arms)
+  cost_budget: 0.04           # d: kWh of cap excess per step (719-step episode budget 28.76 kWh)
+  lambda_init: 2.0
+  lambda_lr: 0.05
+  # LiRA responsibility learning
+  q_meta: 2                   # q: differentiable lookahead steps per replicate
+  m_replicates: 8             # M: independent lookahead replicates per cycle
+  terminal_rollout_steps: 12
+  rho_lr: 0.05                # eta_rho: outer Adam step size on responsibility logits
+  rho_grad_clip: 1.0
+  outer_lr: 0.05              # fallback step size (unused when rho_lr / lambda_lr are set)
+  eval_seed: null             # default: training seed + 5000

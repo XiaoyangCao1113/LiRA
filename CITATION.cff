@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "LiRA: Lagrangian Responsibility Allocation"
+type: software
+license: Apache-2.0
+repository-code: "https://github.com/XiaoyangCao1113/LiRA"
+url: "https://lira-marl.github.io/"
+contact:
+  - family-names: Cao
+    given-names: Xiaoyang
+    email: xycao@mit.edu
+authors:
+  - family-names: Cao
+    given-names: Xiaoyang
+    affiliation: Massachusetts Institute of Technology
+  - family-names: Li
+    given-names: Jingqi
+    affiliation: The University of Texas at Austin
+  - family-names: Fu
+    given-names: Zhe
+    affiliation: Stanford University
+  - family-names: Bayen
+    given-names: Alexandre M.
+    affiliation: University of California, Berkeley
+preferred-citation:
+  type: article
+  title: "Who Bears the Burden? Learning Responsibility for Shared Constraints in Multi-Agent Reinforcement Learning"
+  authors:
+    - family-names: Cao
+      given-names: Xiaoyang
+      affiliation: Massachusetts Institute of Technology
+    - family-names: Li
+      given-names: Jingqi
+      affiliation: The University of Texas at Austin
+    - family-names: Fu
+      given-names: Zhe
+      affiliation: Stanford University
+    - family-names: Bayen
+      given-names: Alexandre M.
+      affiliation: University of California, Berkeley
+  year: 2026
