@@ -24,6 +24,7 @@ authors:
     affiliation: University of California, Berkeley
 preferred-citation:
   type: article
+  journal: "arXiv preprint"
   title: "Who Bears the Burden? Learning Responsibility for Shared Constraints in Multi-Agent Reinforcement Learning"
   authors:
     - family-names: Cao
@@ -39,3 +40,9 @@ preferred-citation:
       given-names: Alexandre M.
       affiliation: University of California, Berkeley
   year: 2026
+  url: "https://arxiv.org/abs/2610.07491"
+  doi: "10.48550/arXiv.2610.07491"
+  identifiers:
+    - type: url
+      value: "https://arxiv.org/abs/2610.07491"
+      description: "arXiv abstract page (arXiv:2610.07491)"
