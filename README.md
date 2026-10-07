@@ -8,7 +8,7 @@ Xiaoyang Cao<sup>1</sup>, Jingqi Li<sup>2</sup>, Zhe Fu<sup>3</sup>, Alexandre M
 
 <sup>1</sup>MIT &nbsp; <sup>2</sup>UT Austin &nbsp; <sup>3</sup>Stanford University &nbsp; <sup>4</sup>UC Berkeley
 
-![arXiv](https://img.shields.io/badge/arXiv-coming_soon-lightgrey.svg)
+[![arXiv](https://img.shields.io/badge/arXiv-2610.07491-b31b1b.svg)](https://arxiv.org/abs/2610.07491)
 [![Project Page](https://img.shields.io/badge/Project-Page-blue.svg)](https://lira-marl.github.io/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-green.svg)](LICENSE)
 
@@ -162,9 +162,13 @@ Run the tests with `pytest tests/`.
 
 ```bibtex
 @misc{cao2026lira,
-  title   = {Who Bears the Burden? Learning Responsibility for Shared Constraints in Multi-Agent Reinforcement Learning},
-  author  = {Cao, Xiaoyang and Li, Jingqi and Fu, Zhe and Bayen, Alexandre M.},
-  year    = {2026}
+  title         = {Who Bears the Burden? Learning Responsibility for Shared Constraints in Multi-Agent Reinforcement Learning},
+  author        = {Cao, Xiaoyang and Li, Jingqi and Fu, Zhe and Bayen, Alexandre M.},
+  year          = {2026},
+  eprint        = {2610.07491},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  url           = {https://arxiv.org/abs/2610.07491}
 }
 ```
 
